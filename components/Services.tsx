@@ -67,7 +67,7 @@ function ServiceCard({
       ))}
 
       {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/55 transition-colors duration-300 group-hover:bg-black/50" />
+      <div className="absolute inset-0 bg-black/30    transition-colors duration-300 group-hover:bg-black/50" />
 
       {/* Gradient */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/30" />
