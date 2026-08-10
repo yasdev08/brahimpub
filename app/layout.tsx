@@ -100,11 +100,11 @@ export const metadata: Metadata = {
         url: "/favicon.ico",
       },
       {
-        url: "/logo1.png",
+        url: "/icon.png",
         type: "image/png",
       },
     ],
-    apple: "/logo1.png",
+    apple: "/apple-touch-icon.png",
   },
 
   category: "business",
