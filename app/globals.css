@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #C8102E;
+  --color-brand-dark: #9E0D24;
+  --color-brand-light: #E8142E;
+  --color-dark: #0A0A0A;
+  --color-charcoal: #1A1A1A;
+  --color-gray-soft: #F4F4F4;
+  --color-muted: #6B7280;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #ffffff;
+  color: #0A0A0A;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-display {
+  font-family: "Space Grotesk", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+}
+
+/* Gradient text utility */
+.text-gradient {
+  background: linear-gradient(135deg, #C8102E 0%, #E8142E 60%, #FF3D5A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #C8102E; border-radius: 3px; }
+
+/* Focus */
+*:focus-visible {
+  outline: 2px solid #C8102E;
+  outline-offset: 2px;
+}
+
+/* Form inputs */
+.form-input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 1.5px solid #E5E5E5;
+  border-radius: 0.5rem;
+  background: #FAFAFA;
+  font-size: 0.9375rem;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  outline: none;
+  color: #0A0A0A;
+  font-family: inherit;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.form-input:focus {
+  border-color: #C8102E;
+  box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.08);
+  background: #fff;
+}
+
+.form-input.border-red-400 {
+  border-color: #f87171;
+}
+
+.form-input::placeholder {
+  color: #9CA3AF;
+}
+
+section {
+  overflow-x: hidden;
+}
