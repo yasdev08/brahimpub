@@ -6,6 +6,9 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://mb-pub.vercel.app";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
 
+  verification: {
+    google: "GvyLVLTWsVhmvsFLAmQPb7rhoCLB2a-Vnj-orSiWd-Q",
+  },
   title: {
     default: "MB PUB — Agence de Publicité & Impression en Algérie",
     template: "%s | MB PUB",
