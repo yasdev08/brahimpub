@@ -10,6 +10,7 @@ import WhyUs from "@/components/WhyUs";
 import CTASection from "@/components/CTASection";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import LocalBusinessSchema from "@/components/LocalBusinessSchema";
 
 export default function HomePage() {
   return (

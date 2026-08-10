@@ -126,7 +126,7 @@ export default function Footer() {
                 },
                 {
                   icon: Mail,
-                  text: "contact@mbpub.dz",
+                  text: "mbpublicite31@gmail.com",
                   href: "mailto:mbpublicite31@gmail.com",
                 },
                 {
