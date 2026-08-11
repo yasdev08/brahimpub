@@ -9,7 +9,7 @@ export default function LocalBusinessSchema() {
     name: "MB PUB",
 
     description:
-      "Agence de publicité, impression et communication visuelle en Algérie.",
+      "Agence de publicité, impression et communication visuelle à Oran.",
 
     url: siteUrl,
 
@@ -23,14 +23,23 @@ export default function LocalBusinessSchema() {
 
     address: {
       "@type": "PostalAddress",
+      streetAddress: "29 Rue Colonel Chabou aek,Maraval, Oran",
+      addressLocality: "Oran",
+      addressRegion: "Oran",
+      postalCode: "31000 ",
       addressCountry: "DZ",
-      addressLocality: "Algérie",
     },
 
-    areaServed: {
-      "@type": "Country",
-      name: "Algérie",
-    },
+    areaServed: [
+      {
+        "@type": "City",
+        name: "Oran",
+      },
+      {
+        "@type": "Country",
+        name: "Algérie",
+      },
+    ],
 
     sameAs: ["https://lnk.bio/mbpub31"],
 

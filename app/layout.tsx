@@ -11,26 +11,26 @@ export const metadata: Metadata = {
     google: "GvyLVLTWsVhmvsFLAmQPb7rhoCLB2a-Vnj-orSiWd-Q",
   },
   title: {
-    default: "MB PUB — Agence de Publicité & Impression en Algérie",
+    default: "MB PUB — Agence de Publicité & Impression en Oran",
     template: "%s | MB PUB",
   },
 
   description:
-    "MB PUB est une agence de publicité, impression et communication visuelle en Algérie. Cartes de visite, flyers, affiches, enseignes, signalétique, design graphique et solutions digitales.",
+    "MB PUB est une agence de publicité, impression et communication visuelle en Oran. Cartes de visite, flyers, affiches, enseignes, signalétique, design graphique et solutions digitales.",
 
   keywords: [
     "MB PUB",
-    "impression publicitaire Algérie",
-    "agence publicité Algérie",
-    "agence communication Algérie",
-    "cartes de visite Algérie",
-    "flyers Algérie",
+    "impression publicitaire Oran",
+    "agence publicité Oran",
+    "agence communication Oran",
+    "cartes de visite Oran",
+    "flyers Oran",
     "impression flyers Oran",
-    "enseignes lumineuses Algérie",
-    "signalétique Algérie",
-    "design graphique Algérie",
-    "QR menu restaurant Algérie",
-    "solutions digitales Algérie",
+    "enseignes lumineuses Oran",
+    "signalétique Oran",
+    "design graphique Oran",
+    "QR menu restaurant Oran",
+    "solutions digitales Oran",
     "impression Oran",
     "publicité Oran",
   ],
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "MB PUB — Agence de Publicité & Impression en Algérie",
+    title: "MB PUB — Agence de Publicité & Impression en Oran",
 
     description:
       "Transformez vos idées en supports visuels puissants. Impression, signalétique, design, publicité et solutions digitales.",
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
 
-    title: "MB PUB — Publicité & Impression en Algérie",
+    title: "MB PUB — Publicité & Impression en Oran",
 
     description:
       "Impression, signalétique, design graphique et solutions digitales pour votre entreprise.",
