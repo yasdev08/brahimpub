@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "MB PUB — Agence de Publicité & Impression en Oran",
+    title: "MB PUB | Agence de Publicité & Impression à Oran",
 
     description:
       "Transformez vos idées en supports visuels puissants. Impression, signalétique, design, publicité et solutions digitales.",
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
 
-    title: "MB PUB — Publicité & Impression en Oran",
+    title: "MB PUB | Publicité & Impression en Oran",
 
     description:
       "Impression, signalétique, design graphique et solutions digitales pour votre entreprise.",
