@@ -4,21 +4,29 @@ import { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Eye } from "lucide-react";
 import { portfolioItems, portfolioCategories } from "@/lib/data";
-
+import Image from "next/image";
 export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState("Tous");
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
-  const filtered = activeCategory === "Tous"
-    ? portfolioItems
-    : portfolioItems.filter((item) => item.category === activeCategory);
+  const filtered =
+    activeCategory === "Tous"
+      ? portfolioItems
+      : portfolioItems.filter((item) => item.category === activeCategory);
 
   return (
-    <section id="realisations" className="bg-white py-20 lg:py-28" aria-label="Nos réalisations">
+    <section
+      id="realisations"
+      className="bg-white py-20 lg:py-28"
+      aria-label="Nos réalisations"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12" ref={ref}>
+        <div
+          className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12"
+          ref={ref}
+        >
           <div>
             <motion.p
               initial={{ opacity: 0, y: 16 }}
@@ -43,7 +51,8 @@ export default function Portfolio() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-muted max-w-sm text-base"
           >
-            Des projets réalisés pour des entrepreneurs, restaurants, cabinets et entreprises à travers l&apos;Algérie.
+            Des projets réalisés pour des entrepreneurs, restaurants, cabinets
+            et entreprises à travers l&apos;Algérie.
           </motion.p>
         </div>
 
@@ -73,7 +82,10 @@ export default function Portfolio() {
         </motion.div>
 
         {/* Grid */}
-        <motion.div layout className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <motion.div
+          layout
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+        >
           <AnimatePresence mode="popLayout">
             {filtered.map((item, i) => (
               <motion.article
@@ -87,38 +99,65 @@ export default function Portfolio() {
                   i === 0 || i === 4 ? "lg:col-span-2 lg:row-span-2" : ""
                 }`}
               >
+                {/* Background image */}
                 {/* Visual */}
                 <div
-                  className={`w-full ${i === 0 || i === 4 ? "h-64 lg:h-full min-h-64" : "h-48"} bg-gradient-to-br ${item.gradient} relative flex items-center justify-center`}
+                  className={`relative w-full overflow-hidden bg-gray-900 ${
+                    i === 0 || i === 4
+                      ? "aspect-[4/3] lg:aspect-auto lg:h-full lg:min-h-[520px]"
+                      : "aspect-[4/3]"
+                  }`}
                 >
-                  {/* Abstract shape */}
-                  <div className="absolute inset-0 opacity-20">
-                    <div className="absolute top-4 right-4 w-16 h-16 rounded-full border-2 border-white" />
-                    <div className="absolute bottom-4 left-4 w-10 h-10 rounded-lg border border-white rotate-12" />
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-0.5 bg-white rotate-45" />
+                  {/* Blurred background */}
+                  <Image
+                    src={item.image}
+                    alt=""
+                    fill
+                    aria-hidden="true"
+                    sizes="100vw"
+                    className="object-cover scale-110 blur-2xl opacity-40"
+                  />
+
+                  {/* Dark layer */}
+                  <div className="absolute inset-0 bg-black/20" />
+
+                  {/* Actual project image */}
+                  <div className="absolute inset-0 flex items-center justify-center p-3 sm:p-4">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      sizes={
+                        i === 0 || i === 4
+                          ? "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
+                          : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      }
+                      className="object-contain transition-transform duration-700 group-hover:scale-[1.03]"
+                    />
                   </div>
 
-                  {/* Product type indicator */}
-                  <div className="flex flex-col items-center gap-2 opacity-40">
-                    <div className="w-12 h-8 bg-white/30 rounded-lg" />
-                    <div className="w-8 h-8 bg-white/20 rounded-full" />
-                  </div>
+                  {/* Readability gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20 pointer-events-none" />
 
                   {/* Hover overlay */}
                   <div className="absolute inset-0 bg-dark/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2">
                     <Eye size={18} className="text-white" />
-                    <span className="text-white font-semibold text-sm font-display">Voir le projet</span>
+                    <span className="text-white font-semibold text-sm font-display">
+                      Voir le projet
+                    </span>
                   </div>
 
-                  {/* Category badge */}
-                  <div className="absolute top-3 left-3 bg-white/10 backdrop-blur-sm border border-white/20 px-2.5 py-1 rounded-full">
-                    <span className="text-white text-xs font-semibold font-display">{item.category}</span>
+                  {/* Category */}
+                  <div className="absolute top-3 left-3 bg-black/40 backdrop-blur-md border border-white/20 px-2.5 py-1 rounded-full">
+                    <span className="text-white text-xs font-semibold font-display">
+                      {item.category}
+                    </span>
                   </div>
                 </div>
 
                 {/* Info */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
-                  <h3 className="font-display text-white font-bold text-sm leading-tight">
+                <div className="absolute bottom-0 left-0 right-0 z-10 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-4 pt-12">
+                  <h3 className="font-display text-white font-bold text-base leading-tight">
                     {item.title}
                   </h3>
                 </div>
@@ -135,7 +174,11 @@ export default function Portfolio() {
           className="text-center mt-12"
         >
           <button
-            onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
+            onClick={() =>
+              document
+                .querySelector("#contact")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
             className="inline-flex items-center gap-2 border-2 border-dark text-dark hover:bg-dark hover:text-white font-bold px-8 py-3.5 rounded-xl transition-all duration-200 font-display"
           >
             Démarrer votre projet

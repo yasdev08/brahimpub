@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://mb-pub.vercel.app";
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://brahimpub.vercel.app";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
 
@@ -110,8 +111,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body>{children}</body>
-      <Analytics />
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }

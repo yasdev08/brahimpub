@@ -13,6 +13,7 @@ export interface PortfolioItem {
   title: string;
   gradient: string;
   accent: string;
+  image: string;
 }
 
 export interface StatItem {
@@ -20,6 +21,7 @@ export interface StatItem {
   suffix: string;
   label: string;
   icon: string;
+  
 }
 
 export interface ProcessStep {

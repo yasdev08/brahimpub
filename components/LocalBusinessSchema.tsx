@@ -1,6 +1,6 @@
 export default function LocalBusinessSchema() {
   const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || "https://mb-pub.vercel.app";
+    process.env.NEXT_PUBLIC_SITE_URL || "https://brahimpub.vercel.app";
 
   const schema = {
     "@context": "https://schema.org",
