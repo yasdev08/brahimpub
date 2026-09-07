@@ -14,6 +14,17 @@ import {
 } from "lucide-react";
 import { services } from "@/lib/data";
 import Image from "next/image";
+import Link from "next/link";
+
+const serviceHrefById: Record<string, string> = {
+  impression: "/services/impression",
+  "grand-format": "/services/grand-format",
+  design: "/services/design-graphique",
+  enseignes: "/services/enseignes-publicitaires",
+  "affichage-digital": "/services/affichage-digital",
+  qr: "/services/solutions-qr",
+  digital: "/services/solutions-digitales",
+};
 const iconMap = {
   Printer,
   Maximize2,
@@ -42,12 +53,13 @@ function ServiceCard({
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [service.images.length]);
+  }, [service.images]);
 
   const Icon = iconMap[service.icon as keyof typeof iconMap];
 
   return (
-    <motion.article
+    <Link href={serviceHrefById[service.id] ?? "/services"} className="block">
+      <motion.article
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: 0.1 + index * 0.08 }}
@@ -109,9 +121,9 @@ function ServiceCard({
           {/* Image indicators */}
           <div className="flex gap-1.5 mt-5">
             {service.images.map((_, imageIndex) => (
-              <button
+              <span
                 key={imageIndex}
-                onClick={() => setCurrentImage(imageIndex)}
+                aria-hidden="true"
                 className={`h-1 rounded-full transition-all duration-300 ${
                   imageIndex === currentImage
                     ? "w-6 bg-brand"
@@ -123,7 +135,8 @@ function ServiceCard({
           </div>
         </div>
       </div>
-    </motion.article>
+      </motion.article>
+    </Link>
   );
 }
 

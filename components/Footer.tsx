@@ -1,33 +1,54 @@
+import Link from "next/link";
 import { AtSign, MessageCircle, Mail, Phone, MapPin } from "lucide-react";
 
 const footerLinks = {
   navigation: [
-    { label: "Accueil", href: "#accueil" },
-    { label: "Services", href: "#services" },
-    { label: "Réalisations", href: "#realisations" },
-    { label: "Processus", href: "#process" },
-    { label: "Contact", href: "#contact" },
+    { label: "Accueil", href: "/" },
+    { label: "Services", href: "/services" },
+    { label: "Réalisations", href: "/realisations" },
+    { label: "À propos", href: "/a-propos" },
+    { label: "Contact", href: "/contact" },
   ],
-
   services: [
-    { label: "Impression", href: "#services" },
-    { label: "Grand Format", href: "#services" },
-    { label: "Design Graphique", href: "#services" },
-    { label: "Solutions QR", href: "#services" },
-    { label: "Solutions Digitales", href: "#services" },
+    { label: "Enseignes publicitaires", href: "/services/enseignes-publicitaires" },
+    { label: "Enseignes lumineuses", href: "/services/enseignes-lumineuses" },
+    { label: "Impression numérique", href: "/services/impression" },
+    { label: "Grand format & bâches", href: "/services/grand-format" },
+    { label: "Habillage vitrine", href: "/services/habillage-vitrine" },
+    { label: "Design graphique", href: "/services/design-graphique" },
+    { label: "Affichage digital LED", href: "/services/affichage-digital" },
+    { label: "Solutions QR", href: "/services/solutions-qr" },
   ],
 };
 
 const socials = [
   {
     icon: AtSign,
-    label: "Socials",
+    label: "Réseaux sociaux MB PUB",
     href: "https://lnk.bio/mbpub31",
   },
   {
     icon: MessageCircle,
-    label: "WhatsApp",
+    label: "WhatsApp MB PUB",
     href: "https://wa.me/213553924419",
+  },
+];
+
+const contactItems = [
+  {
+    icon: Phone,
+    text: "+213 553 924 419",
+    href: "tel:+213553924419",
+  },
+  {
+    icon: Mail,
+    text: "mbpublicite31@gmail.com",
+    href: "mailto:mbpublicite31@gmail.com",
+  },
+  {
+    icon: MapPin,
+    text: "29 Rue Colonel Chabou aek, Maraval, Oran",
+    href: "https://www.google.com/maps/place/Mb+Pub/data=!4m2!3m1!1s0x0:0xaac900da3133f09f",
   },
 ];
 
@@ -40,29 +61,25 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-5">
-              {/* Replace this with your actual logo if needed */}
               <div className="w-9 h-9 bg-brand rounded-lg flex items-center justify-center shadow-lg shadow-brand/20">
                 <span className="text-white font-bold text-sm tracking-tight font-display">
                   MB
                 </span>
               </div>
-
               <span className="font-bold text-xl tracking-tight text-white font-display">
                 PUB
               </span>
             </div>
 
             <p className="text-white/50 text-sm leading-relaxed max-w-xs">
-              Agence de publicité, impression et communication visuelle en
-              Algérie. Nous transformons vos idées en supports qui font la
-              différence.
+              Agence de publicité, impression et communication visuelle à Oran.
+              Enseignes, impression, design graphique et solutions digitales
+              pour les professionnels.
             </p>
 
-            {/* Socials */}
             <div className="flex items-center gap-2 mt-6">
               {socials.map((social) => {
                 const Icon = social.icon;
-
                 return (
                   <a
                     key={social.label}
@@ -84,16 +101,15 @@ export default function Footer() {
             <h3 className="font-display font-bold text-white text-sm uppercase tracking-widest mb-4">
               Navigation
             </h3>
-
             <ul className="flex flex-col gap-2.5">
               {footerLinks.navigation.map((link) => (
                 <li key={link.label}>
-                  <a
+                  <Link
                     href={link.href}
                     className="text-white/50 hover:text-white text-sm transition-colors duration-200"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -104,16 +120,15 @@ export default function Footer() {
             <h3 className="font-display font-bold text-white text-sm uppercase tracking-widest mb-4">
               Services
             </h3>
-
             <ul className="flex flex-col gap-2.5">
               {footerLinks.services.map((link) => (
                 <li key={link.label}>
-                  <a
+                  <Link
                     href={link.href}
                     className="text-white/50 hover:text-white text-sm transition-colors duration-200"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -124,46 +139,18 @@ export default function Footer() {
             <h3 className="font-display font-bold text-white text-sm uppercase tracking-widest mb-4">
               Contact
             </h3>
-
             <ul className="flex flex-col gap-3">
-              {[
-                {
-                  icon: Phone,
-                  text: "+213 553 924 419",
-                  href: "tel:+213553924419",
-                },
-                {
-                  icon: Mail,
-                  text: "mbpublicite31@gmail.com",
-                  href: "mailto:mbpublicite31@gmail.com",
-                },
-                {
-                  icon: MapPin,
-                  text: "29 Rue Colonel Chabou aek, Maraval, Oran",
-                  href: "https://www.google.com/maps/place/Mb+Pub/data=!4m2!3m1!1s0x0:0xaac900da3133f09f",
-                },
-              ].map((item) => {
+              {contactItems.map((item) => {
                 const Icon = item.icon;
-
                 return (
                   <li key={item.text}>
                     <a
                       href={item.href}
-                      target={
-                        item.href.startsWith("http") ? "_blank" : undefined
-                      }
-                      rel={
-                        item.href.startsWith("http")
-                          ? "noopener noreferrer"
-                          : undefined
-                      }
+                      target={item.href.startsWith("http") ? "_blank" : undefined}
+                      rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
                       className="flex items-start gap-2.5 text-white/50 hover:text-white text-sm transition-colors duration-200"
                     >
-                      <Icon
-                        size={15}
-                        className="text-brand flex-shrink-0 mt-0.5"
-                      />
-
+                      <Icon size={15} className="text-brand flex-shrink-0 mt-0.5" />
                       <span>{item.text}</span>
                     </a>
                   </li>
@@ -176,11 +163,10 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 py-6">
           <p className="text-white/30 text-xs sm:text-sm text-center">
-            © 2026 MB PUB. Tous droits réservés.
+            © 2026 MB PUB — Publicité & Impression à Oran. Tous droits réservés.
           </p>
-
           <p className="text-white/30 text-xs sm:text-sm text-center">
-            Site web conçu & développé par{" "}
+            Site web conçu &amp; développé par{" "}
             <a
               href="https://yesirdesign31.netlify.app/"
               target="_blank"

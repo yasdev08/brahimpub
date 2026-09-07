@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default function CTASection() {
   const ref = useRef<HTMLDivElement>(null);
@@ -11,7 +12,6 @@ export default function CTASection() {
   return (
     <section className="relative overflow-hidden" aria-label="Appel à l'action">
       <div className="bg-brand py-20 lg:py-28 relative">
-        {/* Texture overlay */}
         <div
           className="absolute inset-0 opacity-[0.06]"
           style={{
@@ -19,8 +19,6 @@ export default function CTASection() {
             backgroundSize: "24px 24px",
           }}
         />
-
-        {/* Decorative circles */}
         <div className="absolute -top-24 -right-24 w-96 h-96 bg-white/5 rounded-full" />
         <div className="absolute -bottom-32 -left-16 w-80 h-80 bg-white/5 rounded-full" />
         <div className="absolute top-1/2 right-1/4 w-32 h-32 bg-white/5 rounded-full -translate-y-1/2" />
@@ -44,15 +42,15 @@ export default function CTASection() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
+              <Link
+                href="/contact"
                 className="inline-flex items-center justify-center gap-2 bg-white text-brand hover:bg-gray-50 font-bold text-base px-8 py-4 rounded-xl transition-all duration-200 shadow-2xl shadow-black/20 hover:-translate-y-0.5 font-display group"
               >
                 Demander un devis gratuit
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-              </button>
+              </Link>
               <a
-                href="https://wa.me/213000000000"
+                href="https://wa.me/213553924419"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-base px-8 py-4 rounded-xl transition-all duration-200 font-display"

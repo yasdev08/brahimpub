@@ -159,16 +159,19 @@ export default function DigitalSection() {
               })}
             </div>
 
-            <motion.button
+            <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.7 }}
-              onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
-              className="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white font-bold px-7 py-3.5 rounded-xl transition-all duration-200 shadow-lg shadow-brand/25 group font-display"
             >
-              Créer ma carte QR
-              <ArrowRight size={17} className="group-hover:translate-x-1 transition-transform" />
-            </motion.button>
+              <a
+                href="/contact"
+                className="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white font-bold px-7 py-3.5 rounded-xl transition-all duration-200 shadow-lg shadow-brand/25 group font-display"
+              >
+                Créer ma carte QR
+                <ArrowRight size={17} className="group-hover:translate-x-1 transition-transform" />
+              </a>
+            </motion.div>
           </div>
 
           {/* Right — phone mockup */}

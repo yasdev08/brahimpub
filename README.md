@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MB PUB
 
-## Getting Started
+Website for MB PUB, a visual communication and advertising agency in Oran, Algeria.
 
-First, run the development server:
+## Development
+
+Requirements: Node.js 20+ and npm.
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Commands
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint   # Check ESLint rules
+npm run build  # Create a production build
+npm run start  # Run the production build
+```
 
-## Learn More
+## Configuration
 
-To learn more about Next.js, take a look at the following resources:
+Set `NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_GA_ID` in `.env.local` and in the deployment environment. The site URL is used for canonical metadata, JSON-LD, `sitemap.xml`, and `robots.txt`. The GA ID is your Google Analytics 4 Measurement ID, such as `G-XXXXXXXXXX`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Analytics
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The site uses Vercel Web Analytics. The existing `<Analytics />` component records page views, and `AnalyticsTracker` records safe interaction events for links and buttons without sending form contents or query strings.
 
-## Deploy on Vercel
+Tracked custom events include:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `interaction`: link or button type, safe destination, label, and page path.
+- `contact_request_prepared`: form source, selected service, and whether optional fields were filled.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Enable Web Analytics for the Vercel project after deployment to view these events in the Vercel dashboard. Analytics may be blocked by browser extensions or privacy settings.
+
+Google Analytics 4 is loaded only when `NEXT_PUBLIC_GA_ID` is configured. It records page views, route changes, interactions, and contact-request conversion events. Add the same variable to the production deployment settings, then verify traffic in Google Analytics under **Reports** and **Realtime**.
+
+## Content and images
+
+- Service and portfolio content lives in `lib/data.ts` and `lib/services-data.ts`.
+- Service images live in `public/services`.
+- Portfolio images live in `public/portfolio`.
+- Contact forms prepare a WhatsApp message for `+213 553 924 419`.
+
+## Deployment
+
+Build locally with `npm run build`, then deploy the project to Vercel or another Next.js-compatible host. Configure `NEXT_PUBLIC_SITE_URL` with the public domain before deployment.

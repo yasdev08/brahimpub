@@ -171,18 +171,20 @@ export default function Portfolio() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="text-center mt-12"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12"
         >
-          <button
-            onClick={() =>
-              document
-                .querySelector("#contact")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
+          <a
+            href="/realisations"
             className="inline-flex items-center gap-2 border-2 border-dark text-dark hover:bg-dark hover:text-white font-bold px-8 py-3.5 rounded-xl transition-all duration-200 font-display"
           >
+            Voir toutes nos réalisations
+          </a>
+          <a
+            href="/contact"
+            className="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white font-bold px-8 py-3.5 rounded-xl transition-all duration-200 shadow-lg shadow-brand/25 font-display"
+          >
             Démarrer votre projet
-          </button>
+          </a>
         </motion.div>
       </div>
     </section>

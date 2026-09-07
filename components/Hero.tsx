@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
+import Link from "next/link";
 
 // Floating product card shapes - represent printed materials
 const ProductMockup = ({
@@ -118,12 +119,7 @@ const BannerCard = () => (
 );
 
 export default function Hero() {
-  const scrollToContact = () => {
-    document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
-  };
-  const scrollToServices = () => {
-    document.querySelector("#services")?.scrollIntoView({ behavior: "smooth" });
-  };
+
 
   return (
     <section
@@ -206,8 +202,8 @@ export default function Hero() {
                 transition={{ duration: 0.7, delay: 0.45 }}
                 className="flex flex-col sm:flex-row gap-4"
               >
-                <button
-                  onClick={scrollToContact}
+                <Link
+                  href="/contact"
                   className="inline-flex items-center justify-center gap-2 bg-brand hover:bg-brand-dark text-white font-bold text-base px-8 py-4 rounded-xl transition-all duration-200 shadow-xl shadow-brand/30 hover:shadow-brand/40 hover:-translate-y-0.5 font-display group"
                 >
                   Demander un devis
@@ -215,13 +211,13 @@ export default function Hero() {
                     size={18}
                     className="group-hover:translate-x-1 transition-transform"
                   />
-                </button>
-                <button
-                  onClick={scrollToServices}
+                </Link>
+                <Link
+                  href="/services"
                   className="inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold text-base px-8 py-4 rounded-xl transition-all duration-200 font-display"
                 >
                   Découvrir nos services
-                </button>
+                </Link>
               </motion.div>
 
               {/* Trust pills */}

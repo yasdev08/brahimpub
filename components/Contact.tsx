@@ -2,13 +2,13 @@
 
 import { useState, useRef, FormEvent } from "react";
 import { motion, useInView } from "framer-motion";
+import { trackEvent } from "@/lib/analytics";
 import {
   Phone,
   Mail,
   MapPin,
   MessageCircle,
   AtSign,
-  Share2,
   CheckCircle,
 } from "lucide-react";
 
@@ -131,6 +131,7 @@ export default function Contact() {
 
     if (!validate()) return;
 
+    setLoading(true);
     const message = `
 Bonjour MB PUB 👋
 
@@ -155,6 +156,15 @@ ${form.description}
       "_blank",
     );
 
+    trackEvent("contact_request_prepared", {
+      source: "homepage_contact_form",
+      service: form.service,
+      has_company: Boolean(form.entreprise.trim()),
+      has_email: Boolean(form.email.trim()),
+      has_budget: Boolean(form.budget),
+    });
+
+    setLoading(false);
     setSubmitted(true);
   };
 
