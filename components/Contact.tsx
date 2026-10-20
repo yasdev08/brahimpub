@@ -163,6 +163,10 @@ ${form.description}
       has_email: Boolean(form.email.trim()),
       has_budget: Boolean(form.budget),
     });
+    trackEvent("generate_lead", {
+      source: "homepage_contact_form",
+      service: form.service,
+    });
 
     setLoading(false);
     setSubmitted(true);

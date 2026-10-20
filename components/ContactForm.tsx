@@ -87,6 +87,10 @@ export default function ContactForm() {
       has_company: Boolean(form.entreprise.trim()),
       has_email: Boolean(form.email.trim()),
     });
+    trackEvent("generate_lead", {
+      source: "contact_page_form",
+      service: form.service,
+    });
     setLoading(false);
     setSubmitted(true);
   };

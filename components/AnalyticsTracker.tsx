@@ -40,6 +40,16 @@ export default function AnalyticsTracker() {
       }
 
       trackEvent("interaction", getSafeTarget(interactive));
+
+      if (interactive instanceof HTMLAnchorElement) {
+        const url = new URL(interactive.href, window.location.href);
+
+        if (url.protocol === "tel:") {
+          trackEvent("phone_click", { page: window.location.pathname });
+        } else if (url.hostname === "wa.me") {
+          trackEvent("whatsapp_click", { page: window.location.pathname });
+        }
+      }
     };
 
     document.addEventListener("click", handleClick, { passive: true });
