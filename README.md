@@ -23,11 +23,11 @@ npm run start  # Run the production build
 
 ## Configuration
 
-Set `NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_GA_ID` in `.env.local` and in the deployment environment. The site URL is used for canonical metadata, JSON-LD, `sitemap.xml`, and `robots.txt`. The GA ID is your Google Analytics 4 Measurement ID, such as `G-XXXXXXXXXX`.
+Set `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_GA_ID`, and `NEXT_PUBLIC_GTM_ID` in `.env.local` and in the deployment environment. The site URL is used for canonical metadata, JSON-LD, `sitemap.xml`, and `robots.txt`. Use your Google Analytics 4 Measurement ID (`G-...`) and Google Tag Manager container ID (`GTM-...`) for the analytics variables.
 
 ## Analytics
 
-The site uses Vercel Web Analytics. The existing `<Analytics />` component records page views, and `AnalyticsTracker` records safe interaction events for links and buttons without sending form contents or query strings.
+The site uses Vercel Web Analytics and Google Tag Manager. The existing `<Analytics />` component records page views, and `AnalyticsTracker` records safe interaction events for links and buttons without sending form contents or query strings.
 
 Tracked custom events include:
 
@@ -36,7 +36,7 @@ Tracked custom events include:
 
 Enable Web Analytics for the Vercel project after deployment to view these events in the Vercel dashboard. Analytics may be blocked by browser extensions or privacy settings.
 
-Google Analytics 4 is loaded only when `NEXT_PUBLIC_GA_ID` is configured. It records page views, route changes, interactions, and contact-request conversion events. Add the same variable to the production deployment settings, then verify traffic in Google Analytics under **Reports** and **Realtime**.
+Google Analytics 4 is loaded only when `NEXT_PUBLIC_GA_ID` is configured. It records page views, route changes, interactions, and contact-request conversion events. Google Tag Manager loads only when `NEXT_PUBLIC_GTM_ID` is configured. Add both variables to the production deployment settings. If you configure the same GA4 property in GTM, disable the direct GA4 tag or its duplicate page view and event reporting to avoid counting events twice. Verify traffic in Google Analytics under **Reports** and **Realtime**.
 
 ## Content and images
 

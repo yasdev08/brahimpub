@@ -3,6 +3,7 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import AnalyticsTracker from "@/components/AnalyticsTracker";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import GoogleTagManager from "@/components/GoogleTagManager";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://brahimpub.vercel.app";
@@ -99,6 +100,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body>
+        <GoogleTagManager />
         {children}
         <AnalyticsTracker />
         <GoogleAnalytics />
