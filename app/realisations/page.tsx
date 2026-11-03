@@ -5,6 +5,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
 import { MessageCircle } from "lucide-react";
+import { projects, projectCategories } from "@/lib/portfolio";
+import { getServiceBySlug } from "@/lib/services-data";
 
 export const metadata: Metadata = {
   title: "Réalisations & Portfolio | Projets MB PUB à Oran",
@@ -19,129 +21,10 @@ export const metadata: Metadata = {
   },
 };
 
-const projects = [
-  {
-    id: "wonder",
-    image: "/portfolio/wonder.jpg",
-    title: "Wonder",
-    category: "Cartes de visite & Identité",
-    description:
-      "Conception et impression de cartes de visite professionnelles pour une identité visuelle cohérente et impactante.",
-    service: "Impression numérique",
-    serviceSlug: "impression",
-    tags: ["Cartes de visite", "Design graphique"],
-  },
-  {
-    id: "wonderfood",
-    image: "/portfolio/wonderfood.jpg",
-    title: "Wonder Food",
-    category: "Communication restaurant",
-    description:
-      "Création de supports de communication print pour un restaurant : flyers, affiches et menus.",
-    service: "Impression numérique",
-    serviceSlug: "impression",
-    tags: ["Flyers", "Affiches", "Restaurant"],
-  },
-  {
-    id: "thalassa",
-    image: "/portfolio/thalassa.jpg",
-    title: "Thalassa",
-    category: "Affiche événementielle",
-    description:
-      "Conception et impression d'affiches pour un événement professionnel avec un rendu soigné.",
-    service: "Impression numérique",
-    serviceSlug: "impression",
-    tags: ["Affiches", "Événement"],
-  },
-  {
-    id: "backlight",
-    image: "/portfolio/backlight.jpg",
-    title: "Backlight publicitaire",
-    category: "Grand format",
-    description:
-      "Réalisation d'une impression backlight rétroéclairée pour une vitrine commerciale.",
-    service: "Impression grand format",
-    serviceSlug: "grand-format",
-    tags: ["Backlight", "Grand format", "Vitrine"],
-  },
-  {
-    id: "zizou",
-    image: "/portfolio/zizou.jpg",
-    title: "Enseigne Zizou",
-    category: "Enseigne commerciale",
-    description:
-      "Conception et fabrication d'une enseigne publicitaire pour un commerce à Oran.",
-    service: "Enseignes publicitaires",
-    serviceSlug: "enseignes-publicitaires",
-    tags: ["Enseigne", "Façade"],
-  },
-  {
-    id: "website",
-    image: "/portfolio/website.jpg",
-    title: "Profil QR Business",
-    category: "Solutions digitales",
-    description:
-      "Création d'un profil digital accessible par QR code pour une présence en ligne professionnelle.",
-    service: "Solutions QR",
-    serviceSlug: "solutions-qr",
-    tags: ["QR code", "Digital", "Profil"],
-  },
-  {
-    id: "latino",
-    image: "/portfolio/latino.jpg",
-    title: "Latino",
-    category: "Identité visuelle",
-    description:
-      "Conception de cartes de visite et d'identité graphique pour un établissement.",
-    service: "Design graphique",
-    serviceSlug: "design-graphique",
-    tags: ["Cartes de visite", "Identité"],
-  },
-  {
-    id: "rezki",
-    image: "/portfolio/rezki.jpg",
-    title: "Rezki",
-    category: "Impression & Communication",
-    description:
-      "Supports de communication imprimés pour un professionnel à Oran.",
-    service: "Impression numérique",
-    serviceSlug: "impression",
-    tags: ["Impression", "Communication"],
-  },
-  {
-    id: "saphirbleu",
-    image: "/portfolio/saphirbleu.jpg",
-    title: "Saphir Bleu",
-    category: "Identité visuelle & Design",
-    description:
-      "Création de supports visuels et d'identité pour un établissement.",
-    service: "Design graphique",
-    serviceSlug: "design-graphique",
-    tags: ["Design", "Identité"],
-  },
-  {
-    id: "facade",
-    image: "/portfolio/facade.jpg",
-    title: "Habillage de façade",
-    category: "Façade & Enseigne",
-    description:
-      "Habillage complet de façade pour un commerce : revêtement et enseigne sur mesure.",
-    service: "Enseignes publicitaires",
-    serviceSlug: "enseignes-publicitaires",
-    tags: ["Façade", "Habillage", "Enseigne"],
-  },
-  {
-    id: "fantasia",
-    image: "/portfolio/fantasia.jpg",
-    title: "Fantasia",
-    category: "Communication visuelle",
-    description:
-      "Supports de communication grand format et print pour Fantasia à Oran.",
-    service: "Impression numérique",
-    serviceSlug: "impression",
-    tags: ["Grand format", "Print"],
-  },
-];
+const serviceName = (slug: string) =>
+  getServiceBySlug(slug)?.name ?? "Nos services";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://brahimpub.vercel.app";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -149,7 +32,15 @@ const jsonLd = {
   name: "Réalisations MB PUB",
   description:
     "Portfolio des projets réalisés par MB PUB — publicité, impression et communication visuelle à Oran.",
-  url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://brahimpub.vercel.app"}/realisations`,
+  url: `${siteUrl}/realisations`,
+  hasPart: projects.map((p) => ({
+    "@type": "CreativeWork",
+    name: p.title,
+    description: p.description,
+    image: `${siteUrl}${p.image}`,
+    about: p.category,
+    creator: { "@type": "Organization", name: "MB PUB" },
+  })),
 };
 
 export default function RealisationsPage() {
@@ -182,10 +73,21 @@ export default function RealisationsPage() {
                 Nos réalisations à Oran.
               </h1>
               <p className="text-muted text-lg leading-relaxed">
-                Des projets concrets réalisés pour des commerçants, restaurants,
-                cabinets et entreprises à Oran et en Algérie. Chaque projet
-                reflète notre engagement pour la qualité et la créativité.
+                Enseignes lumineuses, façades, caissons backlight, signalétique
+                intérieure et sites web : des projets réels, photographiés sur
+                place chez nos clients à Oran.
               </p>
+              <ul className="flex flex-wrap gap-2 mt-8" aria-label="Catégories">
+                {projectCategories.slice(1).map((cat) => (
+                  <li
+                    key={cat}
+                    className="text-sm font-semibold font-display text-gray-600 bg-gray-100 px-4 py-2 rounded-full"
+                  >
+                    {cat} ·{" "}
+                    {projects.filter((p) => p.category === cat).length}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </section>
@@ -194,32 +96,38 @@ export default function RealisationsPage() {
         <section className="bg-gray-soft py-12 lg:py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="columns-1 sm:columns-2 lg:columns-3 gap-5 space-y-5">
-              {projects.map((project) => (
-                <div
+              {projects.map((project, i) => (
+                <article
                   key={project.id}
-                  className="break-inside-avoid group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100"
+                  id={project.id}
+                  className="break-inside-avoid scroll-mt-28 group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100"
                 >
-                  <div className="relative overflow-hidden aspect-[4/3]">
+                  <div className="relative overflow-hidden bg-gray-100">
                     <Image
                       src={project.image}
                       alt={`${project.title} — ${project.category} par MB PUB à Oran`}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      width={project.width}
+                      height={project.height}
+                      className="w-full h-auto group-hover:scale-105 transition-transform duration-500"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      priority={i < 3}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                    <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 group-focus-within:translate-y-0 transition-all duration-300">
                       <Link
-                        href={`/services/${project.serviceSlug}`}
+                        href={`/services/${project.services[0]}`}
+                        data-track-event="project_service_click"
+                        data-track-project-id={project.id}
+                        data-track-service={project.services[0]}
                         className="text-xs font-semibold text-white/90 bg-brand px-3 py-1.5 rounded-full"
                       >
-                        {project.service}
+                        {serviceName(project.services[0])}
                       </Link>
                     </div>
                   </div>
                   <div className="p-5">
                     <p className="text-brand text-xs font-bold uppercase tracking-wider mb-1.5">
-                      {project.category}
+                      {project.category} · {project.client}
                     </p>
                     <h2 className="font-display font-bold text-dark text-lg mb-2">
                       {project.title}
@@ -238,7 +146,7 @@ export default function RealisationsPage() {
                       ))}
                     </div>
                   </div>
-                </div>
+                </article>
               ))}
             </div>
           </div>

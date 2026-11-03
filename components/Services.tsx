@@ -58,12 +58,12 @@ function ServiceCard({
   const Icon = iconMap[service.icon as keyof typeof iconMap];
 
   return (
-    <Link href={serviceHrefById[service.id] ?? "/services"} className="block">
+    <Link href={serviceHrefById[service.id] ?? "/services"} className="block h-full">
       <motion.article
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: 0.1 + index * 0.08 }}
-      className="group relative min-h-[360px] rounded-2xl overflow-hidden cursor-pointer"
+      className="group relative min-h-[300px] sm:min-h-[360px] h-full rounded-2xl overflow-hidden cursor-pointer"
     >
       {/* Changing background images */}
       {service.images.map((image, imageIndex) => (
@@ -72,6 +72,7 @@ function ServiceCard({
           src={image}
           alt={service.title}
           fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className={`object-cover transition-opacity duration-1000 ${
             imageIndex === currentImage ? "opacity-100" : "opacity-0"
           }`}
@@ -85,7 +86,7 @@ function ServiceCard({
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/30" />
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col h-full min-h-[360px] p-7">
+      <div className="relative z-10 flex flex-col h-full min-h-[300px] sm:min-h-[360px] p-6 sm:p-7">
         {/* Top row */}
         <div className="flex items-start justify-between mb-auto">
           <div className="w-12 h-12 bg-white/10 backdrop-blur-md border border-white/10 rounded-xl flex items-center justify-center text-white group-hover:bg-brand transition-all duration-300">
@@ -182,7 +183,7 @@ export default function Services() {
         </div>
 
         {/* Cards grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-4">
           {services.map((service, i) => (
             <ServiceCard
               key={service.id}
@@ -191,6 +192,39 @@ export default function Services() {
               isInView={isInView}
             />
           ))}
+
+          {/* Custom project card: completes the grid and gives a next step */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.1 + services.length * 0.08 }}
+            className="relative min-h-[300px] sm:min-h-[360px] rounded-2xl bg-brand p-7 flex flex-col justify-between overflow-hidden"
+          >
+            <div className="absolute -right-12 -top-12 w-48 h-48 rounded-full bg-white/10" aria-hidden="true" />
+            <div className="relative">
+              <h3 className="font-display text-2xl font-bold text-white mb-3">
+                Un projet sur mesure ?
+              </h3>
+              <p className="text-white/80 text-sm leading-relaxed">
+                Décrivez votre besoin, nous vous proposons la solution adaptée
+                et un devis gratuit.
+              </p>
+            </div>
+            <div className="relative flex flex-col gap-2.5">
+              <Link
+                href="/contact"
+                className="flex items-center justify-center gap-2 bg-white text-brand font-bold py-3 rounded-xl font-display hover:bg-white/90 transition-colors"
+              >
+                Demander un devis
+              </Link>
+              <Link
+                href="/services"
+                className="flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white font-semibold py-3 rounded-xl transition-colors"
+              >
+                Tous les services
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -1,4 +1,4 @@
-import type { Service, PortfolioItem, StatItem, ProcessStep, WhyItem } from "@/types";
+import type { Service, StatItem, ProcessStep, WhyItem } from "@/types";
 
 export const services: Service[] = [
   {
@@ -35,8 +35,8 @@ export const services: Service[] = [
       "Signalétique intérieure & extérieure",
     ],
     images: [
-      "/services/grand-format-1.jpg",
-      "/services/grand-format-2.jpg",
+      "/portfolio/backlight.jpg",
+      "/portfolio/latino.jpg",
       "/services/grand-format-3.jpg",
     ],
   },
@@ -74,9 +74,9 @@ export const services: Service[] = [
       "Aluco-Bond & habillage casquette",
     ],
     images: [
-      "/services/enseigne-1.jpg",
-      "/services/enseigne-2.jpg",
-      "/services/enseigne-3.jpg",
+      "/portfolio/saphirbleu.jpg",
+      "/portfolio/fantasiaa.jpg",
+      "/portfolio/zizou.jpg",
     ],
   },
 
@@ -139,89 +139,6 @@ export const services: Service[] = [
   },
 ];
 
-export const portfolioItems: PortfolioItem[] = [
-  {
-    id: "p1",
-    category: "Cartes de visite",
-    title: "Identité Corporate Élite",
-    image: "/portfolio/wonder.jpg",
-    gradient: "from-blue-500 via-indigo-500 to-purple-500",
-    accent: "blue",
-  },
-
-  {
-    id: "p2",
-    category: "Flyers",
-    title: "Campagne Restaurant Al Farouk",
-    image: "/portfolio/wonderfood.jpg",
-    gradient: "from-red-500 via-orange-500 to-yellow-500",
-    accent: "red",
-  },
-
-  {
-    id: "p3",
-    category: "Affiches",
-    title: "Événement Médical Annuel",
-    image: "/portfolio/thalassa.jpg",
-    gradient: "from-green-500 via-teal-500 to-cyan-500",
-    accent: "green",
-  },
-
-  {
-    id: "p4",
-    category: "Branding",
-    title: "Marque Concept Store Mode",
-    image: "/portfolio/thalassa.jpg",
-    gradient: "from-pink-500 via-fuchsia-500 to-purple-500",
-    accent: "pink",
-  },
-
-  {
-    id: "p5",
-    category: "Menus",
-    title: "Menu QR Café Lumière",
-    image: "/portfolio/backlight.jpg",
-    gradient: "from-yellow-500 via-amber-500 to-orange-500",
-    accent: "yellow",
-  },
-
-  {
-    id: "p6",
-    category: "Enseignes",
-    title: "Enseigne Pharmacie Centrale",
-    image: "/portfolio/zizou.jpg",
-    gradient: "from-slate-500 via-sky-500 to-indigo-500",
-    accent: "slate",
-  },
-
-  {
-    id: "p7",
-    category: "Digital",
-    title: "Profil QR Business Premium",
-    image: "/portfolio/website.jpg",
-    gradient: "from-cyan-500 via-blue-500 to-violet-500",
-    accent: "cyan",
-  },
-
-  {
-    id: "p8",
-    category: "Cartes de visite",
-    title: "Cabinet Médical Dr. Benali",
-    image: "/portfolio/latino.jpg",
-    gradient: "from-emerald-500 via-lime-500 to-amber-500",
-    accent: "emerald",
-  },
-];
-export const portfolioCategories = [
-  "Tous",
-  "Cartes de visite",
-  "Flyers",
-  "Affiches",
-  "Branding",
-  "Menus",
-  "Enseignes",
-  "Digital",
-];
 
 export const stats: StatItem[] = [
   { value: "500", suffix: "+", label: "Projets réalisés", icon: "CheckCircle" },

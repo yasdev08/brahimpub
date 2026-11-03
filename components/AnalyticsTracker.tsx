@@ -28,6 +28,26 @@ function getSafeTarget(element: HTMLAnchorElement | HTMLButtonElement) {
   };
 }
 
+// Named events from markup, usable in Server Components:
+//   <Link data-track-event="project_click" data-track-project-id="zizou" ...>
+// sends `project_click` with { project_id: "zizou", page: "/..." }.
+function getDeclaredEvent(element: HTMLElement) {
+  const name = element.dataset.trackEvent;
+  if (!name) return null;
+
+  const properties: Record<string, string> = { page: window.location.pathname };
+  for (const [key, value] of Object.entries(element.dataset)) {
+    if (!key.startsWith("track") || key === "track" || key === "trackEvent") continue;
+    if (value === undefined) continue;
+    const prop = key
+      .slice("track".length)
+      .replace(/^[A-Z]/, (c) => c.toLowerCase())
+      .replace(/[A-Z]/g, (c) => `_${c.toLowerCase()}`);
+    properties[prop] = value.slice(0, 100);
+  }
+  return { name, properties };
+}
+
 export default function AnalyticsTracker() {
   useEffect(() => {
     const handleClick = (event: MouseEvent) => {
@@ -40,6 +60,9 @@ export default function AnalyticsTracker() {
       }
 
       trackEvent("interaction", getSafeTarget(interactive));
+
+      const declared = getDeclaredEvent(interactive);
+      if (declared) trackEvent(declared.name, declared.properties);
 
       if (interactive instanceof HTMLAnchorElement) {
         const url = new URL(interactive.href, window.location.href);

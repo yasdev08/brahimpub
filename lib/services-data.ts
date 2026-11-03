@@ -12,7 +12,7 @@ export const servicePages: ServicePage[] = [
       "Une enseigne bien conçue, c'est le premier contact visuel entre votre commerce et vos clients. Chez MB PUB, nous concevons et fabriquons des enseignes publicitaires sur mesure pour les commerces, entreprises et professionnels d'Oran.",
     category: "Signalétique & Façades",
     icon: "Megaphone",
-    heroImage: "/services/enseigne-1.jpg",
+    heroImage: "/portfolio/wonder.jpg",
     features: [
       {
         title: "Conception sur mesure",
@@ -119,7 +119,6 @@ export const servicePages: ServicePage[] = [
       "habillage-vitrine",
       "grand-format",
     ],
-    portfolioIds: ["p6"],
   },
 
   {
@@ -133,7 +132,7 @@ export const servicePages: ServicePage[] = [
       "Une enseigne lumineuse, c'est la garantie d'être visible 24h/24, même en soirée. MB PUB conçoit et fabrique des enseignes lumineuses LED sur mesure pour les commerces et entreprises d'Oran.",
     category: "Signalétique & Façades",
     icon: "Zap",
-    heroImage: "/services/enseigne-2.jpg",
+    heroImage: "/portfolio/saphirbleu.jpg",
     features: [
       {
         title: "Éclairage LED économique",
@@ -229,7 +228,6 @@ export const servicePages: ServicePage[] = [
       "habillage-vitrine",
       "affichage-digital",
     ],
-    portfolioIds: ["p6"],
   },
 
   {
@@ -340,7 +338,6 @@ export const servicePages: ServicePage[] = [
       },
     ],
     relatedServices: ["grand-format", "design-graphique", "solutions-qr"],
-    portfolioIds: ["p1", "p2", "p8"],
   },
 
   {
@@ -354,7 +351,7 @@ export const servicePages: ServicePage[] = [
       "Pour communiquer à grande échelle, MB PUB propose l'impression grand format à Oran. Banderoles, bâches, roll-ups, panneaux et signalétique : des supports imposants pour une visibilité maximale.",
     category: "Grand Format",
     icon: "Maximize2",
-    heroImage: "/services/grand-format-1.jpg",
+    heroImage: "/portfolio/latino.jpg",
     features: [
       {
         title: "Impression de grande dimension",
@@ -460,7 +457,6 @@ export const servicePages: ServicePage[] = [
       "impression",
       "habillage-vitrine",
     ],
-    portfolioIds: ["p5"],
   },
 
   {
@@ -474,7 +470,7 @@ export const servicePages: ServicePage[] = [
       "L'habillage de vitrine est l'un des outils les plus efficaces pour valoriser un commerce. MB PUB réalise des habillages vitrines et façades sur mesure pour les commerçants d'Oran : covering adhésif, lettrage, décoration et campagnes promotionnelles.",
     category: "Signalétique & Façades",
     icon: "Store",
-    heroImage: "/services/enseigne-3.jpg",
+    heroImage: "/portfolio/rezkii.jpg",
     features: [
       {
         title: "Personnalisation complète",
@@ -569,7 +565,6 @@ export const servicePages: ServicePage[] = [
       "grand-format",
       "enseignes-lumineuses",
     ],
-    portfolioIds: ["p6"],
   },
 
   {
@@ -685,7 +680,6 @@ export const servicePages: ServicePage[] = [
       },
     ],
     relatedServices: ["impression", "solutions-qr", "solutions-digitales"],
-    portfolioIds: ["p1", "p4", "p8"],
   },
 
   {
@@ -794,7 +788,6 @@ export const servicePages: ServicePage[] = [
       "enseignes-publicitaires",
       "solutions-digitales",
     ],
-    portfolioIds: [],
   },
 
   {
@@ -899,7 +892,6 @@ export const servicePages: ServicePage[] = [
       },
     ],
     relatedServices: ["impression", "design-graphique", "solutions-digitales"],
-    portfolioIds: ["p5", "p7"],
   },
 
   {
@@ -1004,7 +996,6 @@ export const servicePages: ServicePage[] = [
       },
     ],
     relatedServices: ["solutions-qr", "design-graphique", "affichage-digital"],
-    portfolioIds: ["p7"],
   },
 ];
 

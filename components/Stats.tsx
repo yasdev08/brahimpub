@@ -4,6 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { CheckCircle, Users, Award, Clock } from "lucide-react";
 import { stats } from "@/lib/data";
+import { projects } from "@/lib/portfolio";
+
+const clients = Array.from(new Set(projects.map((p) => p.client)));
 
 const iconMap = { CheckCircle, Users, Award, Clock };
 
@@ -60,16 +63,11 @@ export default function Stats() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-10"
         >
-          <p className="text-muted text-sm font-semibold uppercase tracking-widest mb-3 font-display">
-            Ils nous font confiance
-          </p>
-          <h2 className="font-display text-2xl lg:text-3xl font-bold text-dark">
-            Des solutions créatives pour les entreprises
-            <br />
-            <br className="hidden sm:block" />
-            qui veulent se démarquer.
+          <h2 className="font-display text-2xl lg:text-3xl font-bold text-dark text-balance max-w-2xl mx-auto">
+            Des solutions créatives pour les entreprises qui veulent se
+            démarquer.
           </h2>
         </motion.div>
 
@@ -102,6 +100,28 @@ export default function Stats() {
             );
           })}
         </div>
+
+        {/* Real clients */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-10 text-center"
+        >
+          <p className="text-muted text-xs font-semibold uppercase tracking-widest mb-4 font-display">
+            Ils nous font confiance à Oran
+          </p>
+          <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2">
+            {clients.map((client) => (
+              <li
+                key={client}
+                className="font-display font-bold text-gray-400 text-base lg:text-lg"
+              >
+                {client}
+              </li>
+            ))}
+          </ul>
+        </motion.div>
       </div>
     </section>
   );

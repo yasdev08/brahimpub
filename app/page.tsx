@@ -5,7 +5,6 @@ import Stats from "@/components/Stats";
 import Services from "@/components/Services";
 import FeaturedSection from "@/components/FeaturedSection";
 import DigitalSection from "@/components/DigitalSection";
-import ProcessSection from "@/components/ProcessSection";
 import Portfolio from "@/components/Portfolio";
 import WhyUs from "@/components/WhyUs";
 import CTASection from "@/components/CTASection";
@@ -39,7 +38,6 @@ export default function HomePage() {
         <Services />
         <FeaturedSection />
         <DigitalSection />
-        <ProcessSection />
         <Portfolio />
         <WhyUs />
         <CTASection />

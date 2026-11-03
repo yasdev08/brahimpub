@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# original high-res photos (optimized copies live in /public)
+/assets/originals/

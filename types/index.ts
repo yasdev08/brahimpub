@@ -7,15 +7,19 @@ export interface Service {
   items: string[];
 }
 
-export interface PortfolioItem {
+export interface Project {
   id: string;
-  category: string;
+  client: string;
   title: string;
-  gradient: string;
-  accent: string;
+  category: string;
+  description: string;
   image: string;
-  slug?: string;
-  service?: string;
+  width: number;
+  height: number;
+  /** Service page slugs this project illustrates */
+  services: string[];
+  tags: string[];
+  featured?: boolean;
 }
 
 export interface StatItem {
@@ -53,5 +57,4 @@ export interface ServicePage {
   process: { step: string; title: string; description: string }[];
   faq: { question: string; answer: string }[];
   relatedServices: string[];
-  portfolioIds?: string[];
 }

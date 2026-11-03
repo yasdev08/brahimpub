@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { AtSign, MessageCircle, Mail, Phone, MapPin } from "lucide-react";
 
 const footerLinks = {
@@ -60,16 +61,15 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 py-16">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-5">
-              <div className="w-9 h-9 bg-brand rounded-lg flex items-center justify-center shadow-lg shadow-brand/20">
-                <span className="text-white font-bold text-sm tracking-tight font-display">
-                  MB
-                </span>
-              </div>
-              <span className="font-bold text-xl tracking-tight text-white font-display">
-                PUB
-              </span>
-            </div>
+            <Link href="/" className="inline-flex items-center mb-5" aria-label="MB PUB - Accueil">
+              <Image
+                src="/logo1.png"
+                alt="MB PUB"
+                width={160}
+                height={160}
+                className="h-14 w-auto object-contain"
+              />
+            </Link>
 
             <p className="text-white/50 text-sm leading-relaxed max-w-xs">
               Agence de publicité, impression et communication visuelle à Oran.
