@@ -33,6 +33,18 @@ Tracked custom events include:
 
 - `interaction`: link or button type, safe destination, label, and page path.
 - `contact_request_prepared`: form source, selected service, and whether optional fields were filled.
+- `generate_lead`: contact form submitted (GA4 recommended conversion event).
+- `phone_click` / `whatsapp_click`: a `tel:` or `wa.me` link was clicked, with the page path.
+- `project_click`: a portfolio project was opened. Includes `project_id`, `category`, and `location` (`home` or `service_page`; service pages also send `service`).
+- `portfolio_filter`: a category filter on the home portfolio, with `category`.
+- `project_service_click`: the service badge on a project in `/realisations`, with `project_id` and `service`.
+- `pwa_install_available`: the browser considers the site installable (once per session).
+- `pwa_installed`: the visitor installed the app.
+- `pwa_launch`: the site was opened as the installed app (once per session). `source` is `app` or `shortcut`.
+
+Events go to Vercel Analytics, to GA4 through `gtag` when `NEXT_PUBLIC_GA_ID` is set, and to the GTM `dataLayer` as `{ event: "<name>", ...properties }` when `NEXT_PUBLIC_GTM_ID` is set. In GTM, create a **Custom Event** trigger with the event name to use them.
+
+To add a named event to any link or button, including in Server Components, use data attributes: `data-track-event="name"` plus `data-track-<prop>="value"`. For example, `data-track-project-id="zizou"` is sent as `project_id`.
 
 Enable Web Analytics for the Vercel project after deployment to view these events in the Vercel dashboard. Analytics may be blocked by browser extensions or privacy settings.
 

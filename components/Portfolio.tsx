@@ -75,6 +75,8 @@ export default function Portfolio() {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
+              data-track-event="portfolio_filter"
+              data-track-category={cat}
               aria-pressed={activeCategory === cat}
               className={`px-4 py-2 rounded-full text-sm font-semibold font-display transition-all duration-200 ${
                 activeCategory === cat
@@ -149,6 +151,10 @@ export default function Portfolio() {
                   {/* Hover overlay */}
                   <Link
                     href={`/realisations#${item.id}`}
+                    data-track-event="project_click"
+                    data-track-project-id={item.id}
+                    data-track-category={item.category}
+                    data-track-location="home"
                     className="absolute inset-0 bg-dark/70 opacity-0 group-hover:opacity-100 focus-visible:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2"
                   >
                     <Eye size={18} className="text-white" />

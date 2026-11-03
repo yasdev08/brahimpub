@@ -218,6 +218,11 @@ export default async function ServicePage({ params }: Props) {
                   <Link
                     key={project.id}
                     href={`/realisations#${project.id}`}
+                    data-track-event="project_click"
+                    data-track-project-id={project.id}
+                    data-track-category={project.category}
+                    data-track-location="service_page"
+                    data-track-service={service.slug}
                     className="group relative aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100"
                   >
                     <Image

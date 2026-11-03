@@ -116,6 +116,9 @@ export default function RealisationsPage() {
                     <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 group-focus-within:translate-y-0 transition-all duration-300">
                       <Link
                         href={`/services/${project.services[0]}`}
+                        data-track-event="project_service_click"
+                        data-track-project-id={project.id}
+                        data-track-service={project.services[0]}
                         className="text-xs font-semibold text-white/90 bg-brand px-3 py-1.5 rounded-full"
                       >
                         {serviceName(project.services[0])}
