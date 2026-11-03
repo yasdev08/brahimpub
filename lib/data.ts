@@ -132,8 +132,8 @@ export const services: Service[] = [
       "Google Business",
     ],
     images: [
-      "/portfolio/website.jpg",
       "/services/digital-1.jpg",
+      "/services/digital-2.jpg",
       "/services/digital-3.jpg",
     ],
   },

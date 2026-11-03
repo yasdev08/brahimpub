@@ -71,7 +71,7 @@ const PhotoCard = ({
       src={shot.src}
       alt={shot.alt}
       fill
-      sizes="(max-width: 1280px) 22vw, 280px"
+      sizes="(max-width: 1024px) 160px, 260px"
       className="object-cover"
       priority={priority}
     />
@@ -110,7 +110,7 @@ export default function Hero() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center min-h-screen pt-16 sm:pt-20">
             {/* Left — copy */}
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-8 min-w-0">
               {/* Eyebrow */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -203,6 +203,32 @@ export default function Hero() {
                   </span>
                 ))}
               </motion.div>
+
+              {/* Mobile: real projects strip (the collage is desktop-only) */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.6 }}
+                className="lg:hidden -mx-4 sm:-mx-6 px-4 sm:px-6 flex gap-3 overflow-x-auto snap-x snap-mandatory scroll-px-4 sm:scroll-px-6 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                aria-label="Quelques réalisations"
+              >
+                {heroShots.map((shot, i) => (
+                  <Link
+                    key={shot.src}
+                    href="/realisations"
+                    className="snap-start shrink-0"
+                  >
+                    <PhotoCard shot={shot} className="w-40 h-56" priority={i === 0} />
+                  </Link>
+                ))}
+                <Link
+                  href="/realisations"
+                  className="snap-start shrink-0 w-40 h-56 rounded-2xl border border-white/10 bg-white/5 flex flex-col items-center justify-center gap-2 text-white font-display font-semibold text-sm text-center px-4"
+                >
+                  Voir toutes nos réalisations
+                  <ArrowRight size={18} className="text-brand" />
+                </Link>
+              </motion.div>
             </div>
 
             {/* Right — product mockups */}
@@ -210,24 +236,25 @@ export default function Hero() {
               {/* Background glow */}
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_60%_50%,rgba(200,16,46,0.08),transparent)]" />
 
-              {/* Floating real projects */}
-              <ProductMockup delay={0.5} className="absolute top-10 left-4" rotate={-5}>
-                <PhotoCard shot={heroShots[1]} className="w-52 h-72" />
+              {/* Floating real projects: overlaps only cover card tops,
+                  never the captions at the bottom of each card. */}
+              <ProductMockup delay={0.5} className="absolute bottom-0 left-0 z-10" rotate={-4}>
+                <PhotoCard shot={heroShots[1]} className="w-56 h-80" />
               </ProductMockup>
 
-              <ProductMockup delay={0.65} className="absolute top-0 right-6" rotate={4}>
-                <PhotoCard shot={heroShots[0]} className="w-56 h-80" priority />
+              <ProductMockup delay={0.65} className="absolute top-12 right-0 z-10" rotate={3}>
+                <PhotoCard shot={heroShots[0]} className="w-64 h-96" priority />
               </ProductMockup>
 
-              <ProductMockup delay={0.8} className="absolute bottom-6 left-1/2 -translate-x-1/2" rotate={-1}>
-                <PhotoCard shot={heroShots[2]} className="w-52 h-64" />
+              <ProductMockup delay={0.8} className="absolute top-0 left-24 z-20" rotate={-1}>
+                <PhotoCard shot={heroShots[2]} className="w-44 h-56" />
               </ProductMockup>
 
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.1 }}
-                className="absolute bottom-24 right-2 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl px-4 py-3"
+                className="absolute bottom-2 right-10 z-20 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl px-4 py-3"
               >
                 <p className="text-white font-display font-bold text-sm">Réalisé à Oran</p>
                 <p className="text-white/50 text-xs">Photos de nos chantiers</p>

@@ -88,7 +88,7 @@ export const projects: Project[] = [
   },
   {
     id: "fantasia-logo",
-    client: "Pizza Fantasia",
+    client: "Pizzeria Fantasia",
     title: "Logo lumineux découpé Pizza Fantasia",
     category: "Enseignes lumineuses",
     description:

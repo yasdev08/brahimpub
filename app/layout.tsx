@@ -6,6 +6,7 @@ import GoogleAnalytics from "@/components/GoogleAnalytics";
 import GoogleTagManager from "@/components/GoogleTagManager";
 import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 import PwaTracker from "@/components/PwaTracker";
+import MobileActionBar from "@/components/MobileActionBar";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://brahimpub.vercel.app";
@@ -120,6 +121,7 @@ export default function RootLayout({
       <body>
         <GoogleTagManager />
         {children}
+        <MobileActionBar />
         <AnalyticsTracker />
         <GoogleAnalytics />
         <Analytics />

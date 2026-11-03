@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { projects, projectCategories } from "@/lib/portfolio";
 
-const HOME_LIMIT = 8;
+const HOME_LIMIT = 10;
 
 export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState("Tous");
@@ -89,13 +89,16 @@ export default function Portfolio() {
           ))}
         </motion.div>
 
-        {/* Grid */}
+        {/* Grid: 4 columns on desktop. With "Tous", tiles 0 and 5 are large
+            (2x2) so 10 items fill exactly two 4x2 blocks with no gaps. */}
         <motion.div
           layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:grid-flow-dense"
         >
           <AnimatePresence mode="popLayout">
-            {filtered.map((item, i) => (
+            {filtered.map((item, i) => {
+              const large = activeCategory === "Tous" && (i === 0 || i === 5);
+              return (
               <motion.article
                 key={item.id}
                 layout
@@ -104,49 +107,28 @@ export default function Portfolio() {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.35, delay: i * 0.05 }}
                 className={`relative group rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 ${
-                  i === 0 || i === 4 ? "lg:col-span-2 lg:row-span-2" : ""
+                  large ? "lg:col-span-2 lg:row-span-2" : ""
                 }`}
               >
-                {/* Background image */}
-                {/* Visual */}
                 <div
-                  className={`relative w-full overflow-hidden bg-gray-900 ${
-                    i === 0 || i === 4
-                      ? "aspect-[4/3] lg:aspect-auto lg:h-full lg:min-h-[520px]"
-                      : "aspect-[4/3]"
+                  className={`relative w-full overflow-hidden bg-gray-900 aspect-[3/4] ${
+                    large ? "lg:aspect-auto lg:h-full" : ""
                   }`}
                 >
-                  {/* Blurred background */}
                   <Image
                     src={item.image}
-                    alt=""
+                    alt={`${item.title} — réalisation MB PUB à Oran`}
                     fill
-                    aria-hidden="true"
-                    sizes="64px"
-                    quality={30}
-                    className="object-cover scale-110 blur-2xl opacity-40"
+                    sizes={
+                      large
+                        ? "(max-width: 1024px) 50vw, 600px"
+                        : "(max-width: 1024px) 50vw, 300px"
+                    }
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                   />
 
-                  {/* Dark layer */}
-                  <div className="absolute inset-0 bg-black/20" />
-
-                  {/* Actual project image */}
-                  <div className="absolute inset-0 flex items-center justify-center p-3 sm:p-4">
-                    <Image
-                      src={item.image}
-                      alt={`${item.title} — réalisation MB PUB à Oran`}
-                      fill
-                      sizes={
-                        i === 0 || i === 4
-                          ? "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
-                          : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      }
-                      className="object-contain transition-transform duration-700 group-hover:scale-[1.03]"
-                    />
-                  </div>
-
                   {/* Readability gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/20 pointer-events-none" />
 
                   {/* Hover overlay */}
                   <Link
@@ -164,7 +146,7 @@ export default function Portfolio() {
                   </Link>
 
                   {/* Category */}
-                  <div className="absolute top-3 left-3 bg-black/40 backdrop-blur-md border border-white/20 px-2.5 py-1 rounded-full">
+                  <div className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 bg-black/40 backdrop-blur-md border border-white/20 px-2 sm:px-2.5 py-1 rounded-full max-w-[calc(100%-1.25rem)] truncate">
                     <span className="text-white text-xs font-semibold font-display">
                       {item.category}
                     </span>
@@ -172,16 +154,17 @@ export default function Portfolio() {
                 </div>
 
                 {/* Info */}
-                <div className="absolute bottom-0 left-0 right-0 z-10 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-4 pt-12 pointer-events-none">
+                <div className="absolute bottom-0 left-0 right-0 z-10 p-3 sm:p-4 pointer-events-none">
                   <p className="text-white/60 text-xs font-medium mb-0.5">
                     {item.client}
                   </p>
-                  <h3 className="font-display text-white font-bold text-base leading-tight">
+                  <h3 className="font-display text-white font-bold text-sm sm:text-base leading-tight">
                     {item.title}
                   </h3>
                 </div>
               </motion.article>
-            ))}
+              );
+            })}
           </AnimatePresence>
         </motion.div>
 
