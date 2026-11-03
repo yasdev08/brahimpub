@@ -10,6 +10,7 @@ import {
   getServiceBySlug,
   getRelatedServices,
 } from "@/lib/services-data";
+import { getProjectsForService } from "@/lib/portfolio";
 import {
   CheckCircle,
   ChevronRight,
@@ -41,7 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: service.metaDescription,
       url: `/services/${slug}`,
       ...(service.heroImage && {
-        images: [{ url: service.heroImage, width: 1200, height: 630, alt: service.h1 }],
+        images: [{ url: service.heroImage, alt: service.h1 }],
       }),
     },
   };
@@ -70,6 +71,7 @@ export default async function ServicePage({ params }: Props) {
   if (!service) notFound();
 
   const related = getRelatedServices(service.relatedServices).slice(0, 3);
+  const serviceProjects = getProjectsForService(service.slug).slice(0, 6);
 
   const siteUrl =
     process.env.NEXT_PUBLIC_SITE_URL || "https://brahimpub.vercel.app";
@@ -187,6 +189,59 @@ export default async function ServicePage({ params }: Props) {
             </div>
           </div>
         </section>
+
+        {/* Real projects for this service */}
+        {serviceProjects.length > 0 && (
+          <section className="bg-white py-14 lg:py-16" aria-labelledby="service-projects">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+                <div>
+                  <p className="text-brand text-sm font-bold uppercase tracking-widest mb-2 font-display">
+                    Nos réalisations
+                  </p>
+                  <h2
+                    id="service-projects"
+                    className="font-display text-2xl lg:text-3xl font-bold text-dark"
+                  >
+                    Des projets réels, à Oran
+                  </h2>
+                </div>
+                <Link
+                  href="/realisations"
+                  className="text-brand font-semibold text-sm flex items-center gap-1 hover:gap-2 transition-all"
+                >
+                  Tout le portfolio <ChevronRight size={14} />
+                </Link>
+              </div>
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+                {serviceProjects.map((project) => (
+                  <Link
+                    key={project.id}
+                    href={`/realisations#${project.id}`}
+                    className="group relative aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100"
+                  >
+                    <Image
+                      src={project.image}
+                      alt={`${project.title} — MB PUB Oran`}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 1024px) 50vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-4">
+                      <p className="text-white/60 text-xs font-medium">
+                        {project.client}
+                      </p>
+                      <h3 className="font-display text-white font-bold text-sm sm:text-base leading-tight">
+                        {project.title}
+                      </h3>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Features */}
         <section className="bg-gray-soft py-14 lg:py-16">

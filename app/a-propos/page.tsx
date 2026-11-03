@@ -130,8 +130,8 @@ export default function AboutPage() {
               <div className="relative">
                 <div className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-2xl shadow-black/10">
                   <Image
-                    src="/services/enseigne-1.jpg"
-                    alt="MB PUB — Agence de publicité à Oran"
+                    src="/portfolio/fantasiaa.jpg"
+                    alt="Façade lumineuse Pizzeria Fantasia réalisée par MB PUB à Oran"
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 50vw"

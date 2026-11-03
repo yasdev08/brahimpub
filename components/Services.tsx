@@ -72,6 +72,7 @@ function ServiceCard({
           src={image}
           alt={service.title}
           fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className={`object-cover transition-opacity duration-1000 ${
             imageIndex === currentImage ? "opacity-100" : "opacity-0"
           }`}

@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import AnalyticsTracker from "@/components/AnalyticsTracker";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import GoogleTagManager from "@/components/GoogleTagManager";
+import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://brahimpub.vercel.app";
@@ -84,12 +85,28 @@ export const metadata: Metadata = {
   },
 
   icons: {
-    icon: [{ url: "/logo1.png", type: "image/png" }],
-    shortcut: "/logo1.png",
-    apple: "/logo1.png",
+    icon: [
+      { url: "/icons/favicon-48.png", sizes: "48x48", type: "image/png" },
+      { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180" }],
   },
 
+  applicationName: "MB PUB",
+  appleWebApp: {
+    capable: true,
+    title: "MB PUB",
+    statusBarStyle: "black",
+  },
+  formatDetection: { telephone: true },
+
   category: "business",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#080808",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -105,6 +122,7 @@ export default function RootLayout({
         <AnalyticsTracker />
         <GoogleAnalytics />
         <Analytics />
+        <ServiceWorkerRegister />
       </body>
     </html>
   );

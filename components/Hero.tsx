@@ -3,8 +3,9 @@
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
-// Floating product card shapes - represent printed materials
+// Floating wrapper with a gentle bob animation
 const ProductMockup = ({
   delay,
   className,
@@ -32,90 +33,55 @@ const ProductMockup = ({
   </motion.div>
 );
 
-// Business card mockup
-const BusinessCard = () => (
-  <div className="w-48 h-28 bg-white rounded-xl shadow-2xl shadow-black/40 overflow-hidden border border-white/10 flex-shrink-0">
-    <div className="h-1.5 bg-brand w-full" />
-    <div className="p-3">
-      <div className="w-6 h-6 bg-brand/10 rounded flex items-center justify-center mb-2">
-        <div className="w-3 h-3 bg-brand rounded-sm" />
-      </div>
-      <div className="h-2 bg-gray-800 rounded w-20 mb-1.5" />
-      <div className="h-1.5 bg-gray-400 rounded w-28 mb-1" />
-      <div className="h-1.5 bg-gray-400 rounded w-20" />
-      <div className="mt-2 flex gap-1">
-        <div className="h-1 bg-brand/30 rounded w-16" />
-        <div className="h-1 bg-gray-300 rounded w-10" />
-      </div>
-    </div>
-  </div>
-);
+// Real client projects shown in the hero collage
+const heroShots = [
+  {
+    src: "/portfolio/saphirbleu.jpg",
+    alt: "Lettres lumineuses Saphir Bleu réalisées par MB PUB",
+    label: "Saphir Bleu",
+    caption: "Lettres lumineuses",
+  },
+  {
+    src: "/portfolio/zizou.jpg",
+    alt: "Enseigne lumineuse Zizou Snack à Oran",
+    label: "Zizou Snack",
+    caption: "Enseigne de façade",
+  },
+  {
+    src: "/portfolio/wonderfood.jpg",
+    alt: "Pose de l'enseigne Wonder Food's de nuit",
+    label: "Wonder Food's",
+    caption: "Logo lumineux",
+  },
+];
 
-// Flyer mockup
-const FlyerCard = () => (
-  <div className="w-32 h-44 bg-gradient-to-b from-brand to-brand-dark rounded-xl shadow-2xl shadow-black/40 overflow-hidden border border-white/10 flex-shrink-0">
-    <div className="p-3 h-full flex flex-col">
-      <div className="h-16 bg-white/10 rounded-lg mb-2 flex items-center justify-center">
-        <div className="w-8 h-8 bg-white/30 rounded-full" />
-      </div>
-      <div className="h-2 bg-white rounded w-full mb-1.5" />
-      <div className="h-1.5 bg-white/60 rounded w-3/4 mb-1" />
-      <div className="h-1.5 bg-white/60 rounded w-2/3 mb-auto" />
-      <div className="h-6 bg-white/20 rounded-lg flex items-center justify-center">
-        <div className="h-1.5 bg-white rounded w-12" />
-      </div>
-    </div>
-  </div>
-);
-
-// QR card mockup
-const QRCard = () => (
-  <div className="w-40 h-40 bg-dark rounded-2xl shadow-2xl shadow-black/40 overflow-hidden border border-white/10 p-3 flex flex-col items-center justify-center gap-2 flex-shrink-0">
-    <div className="w-20 h-20 bg-white rounded-lg p-2">
-      <div className="w-full h-full grid grid-cols-3 gap-0.5">
-        {Array.from({ length: 9 }).map((_, i) => (
-          <div
-            key={i}
-            className={`rounded-sm ${
-              [0, 2, 6, 8, 4, 1, 5, 7, 3][i] % 2 === 0
-                ? "bg-dark"
-                : "bg-transparent"
-            }`}
-          />
-        ))}
-      </div>
-    </div>
-    <div className="h-1.5 bg-white/40 rounded w-20" />
-    <div className="h-1 bg-white/20 rounded w-14" />
-  </div>
-);
-
-// Poster mockup
-const PosterCard = () => (
-  <div className="w-28 h-40 bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl shadow-2xl shadow-black/40 overflow-hidden border border-white/10 flex-shrink-0">
-    <div className="p-2.5 h-full flex flex-col">
-      <div className="h-20 bg-gradient-to-br from-brand/20 to-brand/5 rounded-lg mb-2 border border-brand/20 flex items-center justify-center">
-        <div className="w-8 h-8 border-2 border-brand/50 rounded-full" />
-      </div>
-      <div className="h-1.5 bg-white rounded w-full mb-1" />
-      <div className="h-1 bg-white/50 rounded w-3/4 mb-1" />
-      <div className="h-1 bg-white/30 rounded w-2/3 mb-auto" />
-      <div className="h-1 bg-brand/70 rounded w-full" />
-    </div>
-  </div>
-);
-
-// Banner mockup
-const BannerCard = () => (
-  <div className="w-56 h-20 bg-gradient-to-r from-charcoal to-gray-800 rounded-xl shadow-2xl shadow-black/40 overflow-hidden border border-white/10 flex items-center gap-3 px-4 flex-shrink-0">
-    <div className="w-10 h-10 bg-brand/20 rounded-lg flex items-center justify-center flex-shrink-0">
-      <div className="w-5 h-5 bg-brand rounded" />
-    </div>
-    <div className="flex-1">
-      <div className="h-2 bg-white rounded w-full mb-1.5" />
-      <div className="h-1.5 bg-white/40 rounded w-3/4" />
-    </div>
-  </div>
+const PhotoCard = ({
+  shot,
+  className,
+  priority = false,
+}: {
+  shot: (typeof heroShots)[number];
+  className: string;
+  priority?: boolean;
+}) => (
+  <figure
+    className={`relative rounded-2xl overflow-hidden shadow-2xl shadow-black/60 border border-white/10 bg-charcoal ${className}`}
+  >
+    <Image
+      src={shot.src}
+      alt={shot.alt}
+      fill
+      sizes="(max-width: 1280px) 22vw, 280px"
+      className="object-cover"
+      priority={priority}
+    />
+    <figcaption className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/85 to-transparent p-3 pt-10">
+      <span className="block text-white font-display font-bold text-sm leading-tight">
+        {shot.label}
+      </span>
+      <span className="block text-white/60 text-xs">{shot.caption}</span>
+    </figcaption>
+  </figure>
 );
 
 export default function Hero() {
@@ -244,46 +210,28 @@ export default function Hero() {
               {/* Background glow */}
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_60%_50%,rgba(200,16,46,0.08),transparent)]" />
 
-              {/* Floating products */}
-              <ProductMockup
-                delay={0.5}
-                className="absolute top-16 left-8"
-                rotate={-6}
-              >
-                <BusinessCard />
+              {/* Floating real projects */}
+              <ProductMockup delay={0.5} className="absolute top-10 left-4" rotate={-5}>
+                <PhotoCard shot={heroShots[1]} className="w-52 h-72" />
               </ProductMockup>
 
-              <ProductMockup
-                delay={0.65}
-                className="absolute top-8 right-16"
-                rotate={4}
-              >
-                <FlyerCard />
+              <ProductMockup delay={0.65} className="absolute top-0 right-6" rotate={4}>
+                <PhotoCard shot={heroShots[0]} className="w-56 h-80" priority />
               </ProductMockup>
 
-              <ProductMockup
-                delay={0.8}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                rotate={0}
-              >
-                <QRCard />
+              <ProductMockup delay={0.8} className="absolute bottom-6 left-1/2 -translate-x-1/2" rotate={-1}>
+                <PhotoCard shot={heroShots[2]} className="w-52 h-64" />
               </ProductMockup>
 
-              <ProductMockup
-                delay={0.95}
-                className="absolute bottom-28 left-16"
-                rotate={3}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.1 }}
+                className="absolute bottom-24 right-2 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl px-4 py-3"
               >
-                <PosterCard />
-              </ProductMockup>
-
-              <ProductMockup
-                delay={1.1}
-                className="absolute bottom-16 right-4"
-                rotate={-3}
-              >
-                <BannerCard />
-              </ProductMockup>
+                <p className="text-white font-display font-bold text-sm">Réalisé à Oran</p>
+                <p className="text-white/50 text-xs">Photos de nos chantiers</p>
+              </motion.div>
 
               {/* Decorative elements */}
               <motion.div

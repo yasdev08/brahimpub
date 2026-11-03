@@ -3,17 +3,22 @@
 import { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Eye } from "lucide-react";
-import { portfolioItems, portfolioCategories } from "@/lib/data";
 import Image from "next/image";
+import Link from "next/link";
+import { projects, projectCategories } from "@/lib/portfolio";
+
+const HOME_LIMIT = 8;
+
 export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState("Tous");
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
-  const filtered =
+  const filtered = (
     activeCategory === "Tous"
-      ? portfolioItems
-      : portfolioItems.filter((item) => item.category === activeCategory);
+      ? projects
+      : projects.filter((item) => item.category === activeCategory)
+  ).slice(0, HOME_LIMIT);
 
   return (
     <section
@@ -51,8 +56,9 @@ export default function Portfolio() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-muted max-w-sm text-base"
           >
-            Des projets réalisés pour des entrepreneurs, restaurants, cabinets
-            et entreprises à travers l&apos;Algérie.
+            Enseignes, façades, signalétique et supports digitaux réalisés pour
+            des commerces et restaurants d&apos;Oran. Des photos de nos
+            chantiers, sans retouche.
           </motion.p>
         </div>
 
@@ -65,7 +71,7 @@ export default function Portfolio() {
           role="group"
           aria-label="Filtrer par catégorie"
         >
-          {portfolioCategories.map((cat) => (
+          {projectCategories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
@@ -95,7 +101,7 @@ export default function Portfolio() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.35, delay: i * 0.05 }}
-                className={`relative group rounded-2xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition-shadow duration-300 ${
+                className={`relative group rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 ${
                   i === 0 || i === 4 ? "lg:col-span-2 lg:row-span-2" : ""
                 }`}
               >
@@ -114,7 +120,8 @@ export default function Portfolio() {
                     alt=""
                     fill
                     aria-hidden="true"
-                    sizes="100vw"
+                    sizes="64px"
+                    quality={30}
                     className="object-cover scale-110 blur-2xl opacity-40"
                   />
 
@@ -125,7 +132,7 @@ export default function Portfolio() {
                   <div className="absolute inset-0 flex items-center justify-center p-3 sm:p-4">
                     <Image
                       src={item.image}
-                      alt={item.title}
+                      alt={`${item.title} — réalisation MB PUB à Oran`}
                       fill
                       sizes={
                         i === 0 || i === 4
@@ -140,12 +147,15 @@ export default function Portfolio() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20 pointer-events-none" />
 
                   {/* Hover overlay */}
-                  <div className="absolute inset-0 bg-dark/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2">
+                  <Link
+                    href={`/realisations#${item.id}`}
+                    className="absolute inset-0 bg-dark/70 opacity-0 group-hover:opacity-100 focus-visible:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2"
+                  >
                     <Eye size={18} className="text-white" />
                     <span className="text-white font-semibold text-sm font-display">
                       Voir le projet
                     </span>
-                  </div>
+                  </Link>
 
                   {/* Category */}
                   <div className="absolute top-3 left-3 bg-black/40 backdrop-blur-md border border-white/20 px-2.5 py-1 rounded-full">
@@ -156,7 +166,10 @@ export default function Portfolio() {
                 </div>
 
                 {/* Info */}
-                <div className="absolute bottom-0 left-0 right-0 z-10 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-4 pt-12">
+                <div className="absolute bottom-0 left-0 right-0 z-10 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-4 pt-12 pointer-events-none">
+                  <p className="text-white/60 text-xs font-medium mb-0.5">
+                    {item.client}
+                  </p>
                   <h3 className="font-display text-white font-bold text-base leading-tight">
                     {item.title}
                   </h3>
@@ -173,18 +186,18 @@ export default function Portfolio() {
           transition={{ duration: 0.5, delay: 0.5 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12"
         >
-          <a
+          <Link
             href="/realisations"
             className="inline-flex items-center gap-2 border-2 border-dark text-dark hover:bg-dark hover:text-white font-bold px-8 py-3.5 rounded-xl transition-all duration-200 font-display"
           >
             Voir toutes nos réalisations
-          </a>
-          <a
+          </Link>
+          <Link
             href="/contact"
             className="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white font-bold px-8 py-3.5 rounded-xl transition-all duration-200 shadow-lg shadow-brand/25 font-display"
           >
             Démarrer votre projet
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>

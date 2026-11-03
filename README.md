@@ -48,3 +48,23 @@ Google Analytics 4 is loaded only when `NEXT_PUBLIC_GA_ID` is configured. It rec
 ## Deployment
 
 Build locally with `npm run build`, then deploy the project to Vercel or another Next.js-compatible host. Configure `NEXT_PUBLIC_SITE_URL` with the public domain before deployment.
+
+## Images
+
+Portfolio projects are defined once in `lib/portfolio.ts` and used on the home page, `/realisations` and each service page (via each project's `services` slugs).
+
+To add a project photo:
+
+1. Put the full-size original in `assets/originals/portfolio/` (git-ignored).
+2. Run `node scripts/optimize-images.mjs`. It writes a web-sized copy (max 1600px, EXIF/GPS removed) to `public/portfolio/`, and regenerates the PWA icons and `og-image.jpg`.
+3. Add an entry to `lib/portfolio.ts` with the output `width` and `height` printed by the script.
+
+## PWA
+
+The site is installable as a Progressive Web App:
+
+- `app/manifest.ts`: name, icons (including maskable), shortcuts.
+- `public/sw.js`: service worker. It caches visited pages and images and shows `/offline` when a page is opened without a connection. Bump `VERSION` in it to clear old caches.
+- `components/ServiceWorkerRegister.tsx`: registers the worker in production builds only.
+
+Test with `npm run build && npm run start`, then use Chrome DevTools → **Application** (Manifest / Service workers) and **Lighthouse**. Installing requires HTTPS, which Vercel provides.
